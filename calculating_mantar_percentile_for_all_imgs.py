@@ -63,7 +63,7 @@ def prepercentage(result,img):
     print("Renkli piksel sayısı :", sum_color_pixel_count)
     print("Toplam piksel sayısı :", sum_pixel_count)
     percentage = get_percentage(sum_color_pixel_count, sum_pixel_count)
-    print("Lamel üzerindeki mantar oranı : %", percentage)    
+    print("Proportion of fungal on the coverslip : %", percentage)    
     return percentage
 
 def write_percantage_on_image(result,percentage):
@@ -87,7 +87,6 @@ def write_percantage_on_image(result,percentage):
     
     
 def masked_image_save(filename, percentage,masked_file_name,result,text_file_name):
-    #resmin üzerine %'yi yazalım ve dosyaya kaydedelim
     result = write_percantage_on_image(result, percentage)
     
     if not os.path.exists(masked_file_name):
@@ -97,21 +96,22 @@ def masked_image_save(filename, percentage,masked_file_name,result,text_file_nam
         print("The directory already have.")
     cv2.imwrite(masked_file_name+"\\"+filename+"_masked.JPG", result)
     print(filename+"_masked.JPG saved")
-    #tüm resimlere ait mantar yüzde oranlarını bir text dosyasına kaydedelim
+    #save the fungal percentage ratios of all images in a text file
     save_all_percentile_information(filename, percentage,masked_file_name)
     
     
 
 def save_all_percentile_information(filename, percentage,text_file_name):
-    with open('C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/mese_mantar_masked_percentile/readme.txt', 'a') as f:   #eğer "w" write modnda açarsa dosyanın üzerine eklemez son ekleneni alır, "a" append modu tüm satırları yazdırmayı sağlar 
+    with open('C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/oak_fungal_masked_percentile/readme.txt', 'a') as f:  
+        #if it opens in "w" write mode it does not overwrite the file but takes the last appended one, "a" append mode allows printing all lines
         f.write('filename : ' + str(filename) + '.JPG --> mantar percentage : ' + str(percentage)+'\n' )
         f.close()
     
     
     
-source_path='C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/mese_mantar2'
-masked_file_name = 'C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/mese_mantar_masked_percentile'
-text_file_name = 'C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/mese_mantar_masked_percentile/readme.txt'
+source_path='C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/oak_fungal'
+masked_file_name = 'C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/oak_fungal_masked_percentile'
+text_file_name = 'C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/oak_fungal_masked_percentile/readme.txt'
 filepaths = read_all_images(source_path)
 print(str(len(filepaths)) +"  images will be calculate mantar percentile !")
 
