@@ -38,8 +38,8 @@ def canny_edge_detection(path,cropped_file_name):
      filename = path.split("\\")[1].split('.')[0]
      img = cv2.imread(path)
      img_brightness=change_brightness(img,70)  
-     #parlaklığı artırmak köşedeki görünmemesi gereken edge'leri yok etmekte başarılı olmaktadır
-     median_blur=cv2.medianBlur(img_brightness, 13)  #küçük ağaç parçacıklarını yok etmekte işe yarıyor
+     #increasing the brightness is successful in eliminating the edges that should not be visible in the corner
+     median_blur=cv2.medianBlur(img_brightness, 13)  #it works well to destroy small lamella particles
      edges = cv2.Canny(median_blur, 20, 185)
 
 
@@ -64,14 +64,13 @@ def canny_edge_detection(path,cropped_file_name):
 
 
 
-source_path='C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/mese_mantar'
-cropped_file_name = 'C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/mese_mantar_cropped_canny'
+source_path='C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/oak_fungal'
+cropped_file_name = 'C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/oak_fungal_cropped_canny'
 filepaths = read_all_images(source_path)
 print(str(len(filepaths)) +"  images will be cropped !")
 
 for path in filepaths:
     canny_edge_detection(path,cropped_file_name)
-
 
 
 
