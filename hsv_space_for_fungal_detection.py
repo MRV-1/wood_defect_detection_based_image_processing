@@ -21,8 +21,6 @@ def hsv_value(img,hsv):
     cv2.namedWindow("window")
     cv2.resizeWindow("window", 800,500)
     
-    
-    
     cv2.createTrackbar("Hue min","window",0,179,nothing)
     cv2.createTrackbar("Hue max", "window",179,179,nothing)
     
@@ -36,10 +34,8 @@ def hsv_value(img,hsv):
     
     while(1):
         
-         #trackbar değerleri okunuyor(neyi alacak,hangi pencereden alacak)
+
          H_min = cv2.getTrackbarPos("Hue min","window")  
-         #opencv'e 0 le 180 derece arasında kullanır bu yüzden değerler ikiye bölünüyor
-         #bölündüğünde int'e çevirmesi lazım
          H_max = cv2.getTrackbarPos("Hue max","window") 
          S_min = cv2.getTrackbarPos("Saturation min","window")
          S_max = cv2.getTrackbarPos("Saturation max","window")
@@ -65,7 +61,7 @@ def hsv_value(img,hsv):
 
 
 
-img= cv2.imread("C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/mese_mantar_cropped_canny/mese_mantar_0032_cropped.JPG")
+img= cv2.imread("C:/Users/MerveOZKAN/Desktop/lamella_opencv_project/oak_fungal_cropped_canny/mese_mantar_0032_cropped.JPG")
 hsv= cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 lower, upper =hsv_value(img,hsv)
 print("lower :"+str(lower))
