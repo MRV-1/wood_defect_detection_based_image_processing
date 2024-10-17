@@ -1,5 +1,5 @@
 
-# Wood Defect Detection Based Image Processing
+# Image Processing Based Wood Defect Detection 
 
 > <h3> [STEP 1] </h3>
 > <h3> Cropping of original images taken from the field </h3>
